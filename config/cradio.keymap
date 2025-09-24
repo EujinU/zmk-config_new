@@ -104,7 +104,7 @@
         //│  F9      │  F10     │  F11     │  F12      │  PROFILE 2 │   │  CLEAR BT  │ DEC BRIGHT │          |  VOL DOWN │ PREVSONG │
             &kp F9     &kp F10    &kp F11    &kp F12    &bt BT_SEL 2      &bt BT_CLR  &kp C_BRI_DEC  &trans   &kp C_VOL_DN &kp C_PREV
         //╰──────────┴──────────┴──────────┼───────────┼────────────┤   ├────────────┼────────────┼──────────┴───────────┴──────────╯
-                                                &trans   &bt BT_PAIR        &trans       &trans
+                                                &trans     &trans           &trans       &trans
         //                                  ╰──────────┴────────────╯   ╰────────────┴────────────╯
 
 
