@@ -1,5 +1,6 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
 
 #define LEF 2
 #define RIG 1
@@ -45,8 +46,8 @@
                 // РЯД 2
                 &trans &kp CAPS &kp PSCR &kp INS &trans    &kp PG_UP &kp LEFT &kp UP &kp RIGHT &kp DEL
                 
-                // РЯД 3
-                &kp UNDO &kp C_CUT &kp C_COPY &kp C_PASTE &trans    &kp PG_DN &kp HOME &kp DOWN &kp END &kp ESC
+                // РЯД 3 - ИСПРАВЛЕНО!
+                &kp UNDO &kp CUT &kp COPY &kp PASTE &trans    &kp PG_DN &kp HOME &kp DOWN &kp END &kp ESC
                 
                 // THUMB ROW
                 &trans &trans    &trans &trans
