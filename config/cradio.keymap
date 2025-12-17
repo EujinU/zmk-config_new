@@ -24,32 +24,32 @@
         
         default_layer {
             bindings = <
-                // РЯД 1
+                // РЯД 1 (10 keys)
                 &kp Q &kp W &kp E &kp R &kp T    &kp Y &kp U &kp I &kp O &kp P
                 
-                // РЯД 2  
+                // РЯД 2 (10 keys)  
                 &kp A &kp S &kp D &kp F &kp G    &kp H &kp J &kp K &kp L &kp SEMI
                 
-                // РЯД 3
+                // РЯД 3 (10 keys)
                 &kp Z &kp X &kp C &kp V &kp B    &kp N &kp M &kp COMMA &kp DOT &kp SLASH
                 
-                // THUMB ROW
+                // THUMB ROW (4 keys) - ВАЖНО: 2 слева + 2 справа
                 &lt LEF TAB &kp LSHFT    &kp SPACE &lt RIG TAB
             >;
         };
 
         right_layer {
             bindings = <
-                // РЯД 1
+                // РЯД 1 (10 keys)
                 &kp N1 &kp N2 &kp N3 &kp N4 &kp N5    &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
                 
-                // РЯД 2
+                // РЯД 2 (10 keys)
                 &trans &kp CAPS &kp PSCR &kp INS &trans    &kp PG_UP &kp LEFT &kp UP &kp RIGHT &kp DEL
                 
-                // РЯД 3 - ИСПРАВЛЕНО!
+                // РЯД 3 (10 keys)
                 &kp UNDO &kp CUT &kp COPY &kp PASTE &trans    &kp PG_DN &kp HOME &kp DOWN &kp END &kp ESC
                 
-                // THUMB ROW
+                // THUMB ROW (4 keys) - ВАЖНО: 2 слева + 2 справа
                 &trans &trans    &trans &trans
             >;
         };
