@@ -1,9 +1,21 @@
+// Copyright (c) 2022 The ZMK Contributors
+// SPDX-License-Identifier: MIT
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
 
-#define LEF 2
+// Home row mods macro
+#define HRML(k2,k3,k4) &ht LALT k2  &ht LCTRL k3  &ht LGUI k4
+#define HRMR(k1,k2,k3) &ht RGUI k1  &ht RCTRL k2  &ht RALT k3
+#define WHRML(k2,k3,k4) &ht LALT k2  &ht LGUI k3  &ht LCTRL k4
+#define WHRMR(k1,k2,k3) &ht RCTRL k1  &ht RGUI k2  &ht RALT k3
+
+#define WIN 0
 #define RIG 1
+#define LEF 2
+#define TRI 3
 
 / {
     behaviors {
@@ -19,38 +31,83 @@
         };
     };
 
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <RIG LEF>;
+            then-layer = <TRI>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
-        
         default_layer {
             bindings = <
-                // РЯД 1 (10 keys)
-                &kp Q &kp W &kp E &kp R &kp T    &kp Y &kp U &kp I &kp O &kp P
-                
-                // РЯД 2 (10 keys)  
-                &kp A &kp S &kp D &kp F &kp G    &kp H &kp J &kp K &kp L &kp SEMI
-                
-                // РЯД 3 (10 keys)
-                &kp Z &kp X &kp C &kp V &kp B    &kp N &kp M &kp COMMA &kp DOT &kp SLASH
-                
-                // THUMB ROW (4 keys)
-                &lt LEF TAB &kp LSHFT &kp SPACE &lt RIG TAB
+        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│    Q Й   │    W Ц   │     E У  │     R К  │    T Е   │   │    Y Н   │    U Г   │    I Ш   │    O Щ   │    P З   │
+              &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│     A Ф  │    S Ы   │    D В   │     F А  │    G П   │   │    H Р   │    J О   │    K Л   │    L Д   │BACKSPACE │
+              &kp A    WHRML(S,         D,         F)     &kp G          &kp H    WHRMR(J,      K,         L)      &kp BSPC
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│     Z Я  │    X Ч   │    C С   │     V М  │    B И   │   │    N Т   │    M Ь   │   , < Б  │   . > Ю  │ ENTER    │
+              &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N     &kp M     &kp COMMA  &kp DOT    &kp ENTER
+        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+                                           &lt LEF TAB  &kp LSHIFT    &kp SPACE  &lt RIG TAB
+        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
 
         right_layer {
             bindings = <
-                // РЯД 1 (10 keys)
-                &kp N1 &kp N2 &kp N3 &kp N4 &kp N5    &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
-                
-                // РЯД 2 (10 keys)
-                &trans &kp CAPS &kp PSCR &kp INS &trans    &kp PG_UP &kp LEFT &kp UP &kp RIGHT &kp DEL
-                
-                // РЯД 3 (10 keys)
-                &kp UNDO &kp CUT &kp COPY &kp PASTE &trans    &kp PG_DN &kp HOME &kp DOWN &kp END &kp ESC
-                
-                // THUMB ROW (4 keys) - БЕЗ лишних пробелов!
-                &trans &trans &trans &trans
+        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│ 1        │  2       │  3       │  4       │  5       │   │ 6        │ 7        │ 8        │ 9        │   0      │
+            &kp N1    &kp N2     &kp N3     &kp N4     &kp N5          &kp N6     &kp N7     &kp N8     &kp N9      &kp N0
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │ CapsLock │ PrintSc  │  INSERT  │          |   |  PAGE UP │   LEFT   │    UP    │  RIGHT   │  DELETE  │
+            &trans     &kp CAPS   &kp PSCRN  &kp INS     &trans       &kp PG_UP   &kp LARW   &kp UARW   &kp RARW    &kp DEL 
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │    CUT   │   COPY   │   PASTE  │          │   │  PAGE DN │   HOME   │   DOWN   │    END   │    ESC   │
+            &kp UNDO   &kp C_CUT &kp C_COPY &kp C_PASTE &kp AGAIN      &kp PG_DN   &kp HOME  &kp DARW    &kp END    &kp ESC 
+        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+                                             &trans     &trans          &trans     &trans
+        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            >;
+        };
+
+        left_layer {
+            bindings = <
+        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│    !     │    @     │     #    │     $    │    %     │   │     ^    │     &    │     *    │    ` Ё   │     ~ ё  │
+            &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT      &kp CARET  &kp AMPS   &kp ASTRK  &kp GRAVE   &kp TILDE
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│    "     │    [ Х   │     {    │     (    │          │   │     /    │    +     │     -    │    :     │     ; Ж  │
+            &kp DQT    &kp LBKT   &kp LBRC   &kp LPAR   &trans         &kp FSLH   &kp PLUS   &kp MINUS  &kp COLON   &kp SEMI
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│    ' Э   │    ] Ъ   │     }    │     )    │          │   │    \     │    =     │     _    │    │     │     ?    │
+            &kp SQT     &kp RBKT   &kp RBRC   &kp RPAR   &trans         &kp BSLH  &kp EQUAL  &kp UNDER   &kp PIPE  &kp QMARK
+        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+                                             &trans     &trans         &trans     &trans
+        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            >;
+        };
+
+        tri_layer {
+            bindings = <
+        //╭──────────┬──────────┬──────────┬───────────┬────────────╮   ╭────────────┬────────────┬──────────┬───────────┬──────────╮
+        //│  F1      │  F2      │  F3      │  F4       │ PROFILE 0  │   │ PROFILE 3  │ TOGGLEOUT  │ WINDOWS  │   VOL UP  │ NEXTSONG │
+            &kp F1     &kp F2     &kp F3     &kp F4     &bt BT_SEL 0     &bt BT_SEL 3 &out OUT_TOG &tog WIN   &kp C_VOL_UP &kp C_NEXT
+        //├──────────┼──────────┼──────────┼───────────┼────────────┤   ├────────────┼────────────┼──────────┼───────────┼──────────┤
+        //│  F5      │  F6      │  F7      │  F8       │ PROFILE 1  │   │ PROFILE 4  │ INC BRIGHT │          │  VOL MUTE │PAUSEMUSIC│
+            &kp F5     &kp F6     &kp F7     &kp F8     &bt BT_SEL 1     &bt BT_SEL 4  &kp C_BRI_UP  &trans   &kp C_MUTE  &kp C_PP
+        //├──────────┼──────────┼──────────┼───────────┼────────────┤   ├────────────┼────────────┼──────────┼───────────┼──────────┤
+        //│  F9      │  F10     │  F11     │  F12      │  PROFILE 2 │   │  CLEAR BT  │ DEC BRIGHT │          |  VOL DOWN │ PREVSONG │
+            &kp F9     &kp F10    &kp F11    &kp F12    &bt BT_SEL 2      &bt BT_CLR  &kp C_BRI_DEC  &trans   &kp C_VOL_DN &kp C_PREV
+        //╰──────────┴──────────┴──────────┼───────────┼────────────┤   ├────────────┼────────────┼──────────┴───────────┴──────────╯
+                                                &trans     &trans           &trans       &trans
+        //                                  ╰──────────┴────────────╯   ╰────────────┴────────────╯
+
+
             >;
         };
     };
