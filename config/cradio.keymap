@@ -68,7 +68,7 @@
             &trans     &kp CAPS   &kp PSCRN  &kp INS     &trans       &kp PG_UP   &kp LARW   &kp UARW   &kp RARW    &kp DEL 
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│          │    CUT   │   COPY   │   PASTE  │          │   │  PAGE DN │   HOME   │   DOWN   │    END   │    ESC   │
-            &kp UNDO   &kp K_CUT &kp K_COPY &kp K_PASTE &kp AGAIN      &kp PG_DN   &kp HOME  &kp DARW    &kp END    &kp ESC 
+            &kp UNDO  &kp C_CUT  &kp C_COPY &kp C_PASTE &kp AGAIN      &kp PG_DN   &kp HOME  &kp DARW    &kp END    &kp ESC 
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans          &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
