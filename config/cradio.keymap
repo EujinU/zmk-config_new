@@ -65,10 +65,10 @@
             &kp N1    &kp N2     &kp N3     &kp N4     &kp N5          &kp N6     &kp N7     &kp N8     &kp N9      &kp N0
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│          │ CapsLock │ PrintSc  │  INSERT  │          |   |  PAGE UP │   LEFT   │    UP    │  RIGHT   │  DELETE  │
-            &trans     &kp CAPS   &kp PSCRN  &kp INS     &trans       &kp PG_UP   &kp LARW   &kp UARW   &kp RARW    &kp DEL 
+            &trans     &kp CAPS   &kp PSCR   &kp INS     &trans       &kp PG_UP   &kp LEFT   &kp UP     &kp RIGHT   &kp DEL 
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │    CUT   │   COPY   │   PASTE  │          │   │  PAGE DN │   HOME   │   DOWN   │    END   │    ESC   │
-            &kp UNDO  &kp C_CUT  &kp C_COPY &kp C_PASTE &kp AGAIN      &kp PG_DN   &kp HOME  &kp DARW    &kp END    &kp ESC 
+        //│   UNDO   │    CUT   │   COPY   │   PASTE  │   AGAIN  │   │  PAGE DN │   HOME   │   DOWN   │    END   │    ESC   │
+            &kp UNDO   &kp C_CUT &kp C_COPY &kp C_PASTE &kp AGAIN      &kp PG_DN   &kp HOME  &kp DOWN   &kp END    &kp ESC 
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans          &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
@@ -102,12 +102,10 @@
             &kp F5     &kp F6     &kp F7     &kp F8     &bt BT_SEL 1     &bt BT_SEL 4  &kp C_BRI_UP  &trans   &kp C_MUTE  &kp C_PP
         //├──────────┼──────────┼──────────┼───────────┼────────────┤   ├────────────┼────────────┼──────────┼───────────┼──────────┤
         //│  F9      │  F10     │  F11     │  F12      │  PROFILE 2 │   │  CLEAR BT  │ DEC BRIGHT │          |  VOL DOWN │ PREVSONG │
-            &kp F9     &kp F10    &kp F11    &kp F12    &bt BT_SEL 2      &bt BT_CLR  &kp C_BRI_DEC  &trans   &kp C_VOL_DN &kp C_PREV
+            &kp F9     &kp F10    &kp F11    &kp F12    &bt BT_SEL 2      &bt BT_CLR  &kp C_BRI_DN  &trans   &kp C_VOL_DN &kp C_PREV
         //╰──────────┴──────────┴──────────┼───────────┼────────────┤   ├────────────┼────────────┼──────────┴───────────┴──────────╯
                                                 &trans     &trans           &trans       &trans
         //                                  ╰──────────┴────────────╯   ╰────────────┴────────────╯
-
-
             >;
         };
     };
