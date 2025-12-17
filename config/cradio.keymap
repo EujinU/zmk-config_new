@@ -33,8 +33,8 @@
                 // РЯД 3 (10 keys)
                 &kp Z &kp X &kp C &kp V &kp B    &kp N &kp M &kp COMMA &kp DOT &kp SLASH
                 
-                // THUMB ROW (4 keys) - ВАЖНО: 2 слева + 2 справа
-                &lt LEF TAB &kp LSHFT    &kp SPACE &lt RIG TAB
+                // THUMB ROW (4 keys)
+                &lt LEF TAB &kp LSHFT &kp SPACE &lt RIG TAB
             >;
         };
 
@@ -49,8 +49,8 @@
                 // РЯД 3 (10 keys)
                 &kp UNDO &kp CUT &kp COPY &kp PASTE &trans    &kp PG_DN &kp HOME &kp DOWN &kp END &kp ESC
                 
-                // THUMB ROW (4 keys) - ВАЖНО: 2 слева + 2 справа
-                &trans &trans    &trans &trans
+                // THUMB ROW (4 keys) - БЕЗ лишних пробелов!
+                &trans &trans &trans &trans
             >;
         };
     };
