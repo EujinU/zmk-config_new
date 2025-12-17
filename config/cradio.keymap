@@ -68,12 +68,12 @@
             &kp DEL   &kp CAPS   &kp PSCRN  &kp INS     &trans          &trans    &kp LARW   &kp DARW   &kp UARW   &kp RARW 
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│          │          │          │          │          │   │          │ HOME     │ PAGE DN  │ PAGE UP  │ END      │
-             &trans     &kp CUT  &kp K_COPY &kp K_PASTE    &trans         &trans     &kp HOME   &kp PG_DN  &kp PG_UP  &kp END 
+         &kp K_UNDO    &kp K_CUT &kp K_COPY &kp K_PASTE &kp K_AGAIN    &trans     &kp HOME   &kp PG_DN  &kp PG_UP  &kp END 
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &kp ESC        &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
-        };
+        };    
 
         left_layer {
             bindings = <
