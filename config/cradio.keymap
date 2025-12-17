@@ -1,104 +1,18 @@
-// Copyright (c) 2022 The ZMK Contributors
-// SPDX-License-Identifier: MIT
-
+// config/cradio.keymap - МИНИМАЛЬНАЯ РАБОЧАЯ ВЕРСИЯ
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/outputs.h>
-
-// Home row mods macro
-#define HRML(k2,k3,k4) &ht LALT k2  &ht LCTRL k3  &ht LGUI k4
-#define HRMR(k1,k2,k3) &ht RGUI k1  &ht RCTRL k2  &ht RALT k3
-#define WHRML(k2,k3,k4) &ht LALT k2  &ht LGUI k3  &ht LCTRL k4
-#define WHRMR(k1,k2,k3) &ht RCTRL k1  &ht RGUI k2  &ht RALT k3
-
-#define WIN 0
-#define RIG 1
-#define LEF 2
-#define TRI 3
 
 / {
-    behaviors {
-        ht: hold_tap {
-            label = "hold_tap";
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <220>;
-            quick-tap-ms = <150>;
-            global-quick-tap;
-            bindings = <&kp>, <&kp>;
-        };
-    };
-
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers = <RIG LEF>;
-            then-layer = <TRI>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
+        
         default_layer {
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│    Q Й   │    W Ц   │     E У  │     R К  │    T Е   │   │    Y Н   │    U Г   │    I Ш   │    O Щ   │    P З   │
-              &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│     A Ф  │    S Ы   │    D В   │     F А  │    G П   │   │    H Р   │    J О   │    K Л   │    L Д   │BACKSPACE │
-              &kp A    WHRML(S,         D,         F)     &kp G          &kp H    WHRMR(J,      K,         L)      &kp BSPC
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│     Z Я  │    X Ч   │    C С   │     V М  │    B И   │   │    N Т   │    M Ь   │   , < Б  │   . > Ю  │ ENTER    │
-              &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N     &kp M     &kp COMMA  &kp DOT    &kp ENTER
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                           &lt LEF TAB  &kp LSHIFT    &kp SPACE  &lt RIG TAB
-        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+                &kp Q &kp W &kp E &kp R &kp T    &kp Y &kp U &kp I &kp O &kp P
+                &kp A &kp S &kp D &kp F &kp G    &kp H &kp J &kp K &kp L &kp SEMI
+                &kp Z &kp X &kp C &kp V &kp B    &kp N &kp M &kp COMMA &kp DOT &kp SLASH
+                                   &kp TAB &kp LSHIFT    &kp SPACE &kp RET
             >;
         };
-
-        right_layer {
-            bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│ 1        │  2       │  3       │  4       │  5       │   │ 6        │ 7        │ 8        │ 9        │   0      │
-            &kp N1    &kp N2     &kp N3     &kp N4     &kp N5          &kp N6     &kp N7     &kp N8     &kp N9      &kp N0
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │ CapsLock │ PrintSc  │  INSERT  │          |   |  PAGE UP │   LEFT   │    UP    │  RIGHT   │  DELETE  │
-            &trans     &kp CAPS   &kp PSCR   &kp INS     &trans       &kp PG_UP   &kp LEFT   &kp UP     &kp RIGHT   &kp DEL 
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│   UNDO   │    CUT   │   COPY   │   PASTE  │   AGAIN  │   │  PAGE DN │   HOME   │   DOWN   │    END   │    ESC   │
-            &kp UNDO   &kp C_CUT &kp C_COPY &kp C_PASTE &kp AGAIN      &kp PG_DN   &kp HOME  &kp DOWN   &kp END    &kp ESC 
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &trans          &trans     &trans
-        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
-            >;
-        };
-
-        left_layer {
-            bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│    !     │    @     │     #    │     $    │    %     │   │     ^    │     &    │     *    │    ` Ё   │     ~ ё  │
-            &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT      &kp CARET  &kp AMPS   &kp ASTRK  &kp GRAVE   &kp TILDE
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│    "     │    [ Х   │     {    │     (    │          │   │     /    │    +     │     -    │    :     │     ; Ж  │
-            &kp DQT    &kp LBKT   &kp LBRC   &kp LPAR   &trans         &kp FSLH   &kp PLUS   &kp MINUS  &kp COLON   &kp SEMI
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│    ' Э   │    ] Ъ   │     }    │     )    │          │   │    \     │    =     │     _    │    │     │     ?    │
-            &kp SQT     &kp RBKT   &kp RBRC   &kp RPAR   &trans         &kp BSLH  &kp EQUAL  &kp UNDER   &kp PIPE  &kp QMARK
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &trans         &trans     &trans
-        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
-            >;
-        }
-
-        // ВРЕМЕННО УДАЛЕНО - восстановим позже
-        // tri_layer {
-        //     bindings = <
-        //         &kp F1 &kp F2 &kp F3 &kp F4 &bt BT_SEL 0
-        //         &kp F5 &kp F6 &kp F7 &kp F8 &bt BT_SEL 1
-        //         &kp F9 &kp F10 &kp F11 &kp F12 &bt BT_SEL 2
-        //     >;
-        // }
     };
 };
