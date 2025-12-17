@@ -101,7 +101,7 @@
                 // ПРАВАЯ ПОЛОВИНА
                 &bt BT_SEL 3 &out OUT_TOG &tog WIN &kp C_VOL_UP &kp C_NEXT
                 &bt BT_SEL 4 &kp C_BRI_UP &trans   &kp C_MUTE   &kp C_PP
-                &bt BT_CLR 0   &kp C_BRI_DN &trans   &kp C_VOL_DN &kp C_PREV
+                &bt BT_CLR   &kp C_BRI_DN &trans   &kp C_VOL_DN &kp C_PREV
                 &trans    &trans
             >;
         };
